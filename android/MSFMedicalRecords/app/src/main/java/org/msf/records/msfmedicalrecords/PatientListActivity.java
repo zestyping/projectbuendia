@@ -2,7 +2,6 @@ package org.msf.records.msfmedicalrecords;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +23,7 @@ import android.view.MenuItem;
  * {@link PatientListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class PatientListActivity extends Activity
+public class PatientListActivity extends TrackingActivity
         implements PatientListFragment.Callbacks {
 
     /**
@@ -89,7 +88,7 @@ public class PatientListActivity extends Activity
         inflater.inflate(R.menu.main, menu);
 
         MenuItem searchMenuItem = menu.findItem( R.id.action_search );
-        searchMenuItem.expandActionView();
+//        searchMenuItem.expandActionView();
         return super.onCreateOptionsMenu(menu);
     }
 }
