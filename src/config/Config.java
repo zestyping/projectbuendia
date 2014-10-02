@@ -7,7 +7,7 @@ public final class Config {
     NOT OVERWRITTEN BY CONFIG.PROP BUT USED BY THE SERVER:
      */
 
-    public static String CONFIGURATION_FILE = "czonfig.prop";
+    public static String CONFIGURATION_FILE = "config.prop";
 
 
 
@@ -32,11 +32,12 @@ public final class Config {
 
     //hosts
 
-    public static String DATABASE_HOST = "localhost";
+    public static String SQLITE_PATH = "localhost";
     public static String MONGODB_HOST = "localhost";
 
     //security measures
-    public static int MAX_LOGFILE_SIZE_MB = 10;
+    public static String ERROR_PATH = "/";
+    public static int MAX_ERROR_FOLDER_SIZE_MB = 10;
 
 
 

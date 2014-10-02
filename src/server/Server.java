@@ -2,15 +2,20 @@ package server;
 
 import config.Config;
 import config.ServerProperties;
+import io.FileChecks;
+import io.Logging;
+import sqlite.ConnectionProcessor;
+import sqlite.SQLITEConnection;
+import sqlite.impl.OverrideQuery;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
 
 /**
  * Created by wwadewitte on 10/1/14.
@@ -22,80 +27,59 @@ public final class Server {
         return systemProperties;
     }
     private static Calendar calendar = new GregorianCalendar();
+    private static ConnectionProcessor localDatabase;
 
-    public static final void main(String[] args) {
-        try {
-            System.setErr(new PrintStream(new ErrorFile(), true));
-        }catch (Exception e) {
-            log("SEVERE",e);
-        }
+    public static Calendar getCalendar() {
+        return calendar;
+    }
+
+    public static final void main(String[] args) throws InterruptedException {
+
         systemProperties = new ServerProperties(Config.CONFIGURATION_FILE);
         ServerProperties.read();
-        calendar.setTimeZone(TimeZone.getTimeZone(Config.SERVER_TIMEZONE));
-        log("RESTART","--------------------------------------------------------------------");
-        log("INFO", "The server was restarted");
-
         try {
-            //throw new Exception();
+            System.setErr(new PrintStream(new Logging.ErrorFile(), true));
         }catch (Exception e) {
-            log("CRUCIAL",e);
+            System.out.println("Error was thrown with config.prop config. Switching to errors/");
+            Logging.log("SEVERE", e);
+            try {
+                System.setErr(new PrintStream(new Logging.ErrorFile("errors/"), true));
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+                System.out.println("Closing error logging stream");
+                // close the stream so it is no longer logged anywhere
+                System.err.close();
+            }
+        }
+        calendar.setTimeZone(TimeZone.getTimeZone(Config.SERVER_TIMEZONE));
+        Logging.log("RESTART","--------------------------------------------------------------------");
+        Logging.log("INFO", "The server was restarted");
+
+        localDatabase  = new ConnectionProcessor(new SQLITEConnection(Config.SQLITE_PATH));
+        localDatabase.start();
+        //Logging.writeSampleErrors(10);
+        long start = System.currentTimeMillis();
+        System.out.println("Putting thread to sleep until database is connected..");
+
+        while(!localDatabase.isConnected()) {
+            Thread.sleep(1);
         }
 
-    }
+        long end = System.currentTimeMillis();
 
+        Logging.log("INFO", Config.SQLITE_PATH + " (sqlite) took "+(end - start)+" ms to connect");
+        localDatabase.executeQuery(new OverrideQuery("select 1 as `hah`") {
 
+            @Override
+            public void execute(ResultSet result) throws SQLException {
+                while(result.next()) {
+                    System.out.println(result.getInt("hah"));
+                }
+            }
+        });
 
+        //System.out.println("Getting roots");
 
-    public static void log(String errorLevel,Exception e) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-            System.err.print("["+errorLevel+" (version "+Config.SERVER_VERSION+") "+sdf.format(calendar.getTime())+"]");
-            e.printStackTrace(System.err);
-    }
-
-    public static void log(String errorLevel,String s) {
-        //synchronized(System.err) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        System.err.println("[" + errorLevel + " (version " + Config.SERVER_VERSION + ") " + sdf.format(calendar.getTime()) + "] " + s);
-    }
-
-
-
-
-
-
-    private static class ErrorFile extends FileOutputStream {
-        private static String getErrorFile() {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd");
-            String name = ("errors/Error-v" +
-                    Config.SERVER_VERSION + "-" +
-                    sdf.format(calendar.getTime()) +
-                    ".log");
-            return name;
-        }
-
-        private final PrintStream errorStream = System.err;
-
-        ErrorFile() throws FileNotFoundException {
-            super(ErrorFile.getErrorFile(), true);
-        }
-
-        @Override
-        public void write(int b) throws IOException {
-            errorStream.write(b);
-            super.write(b);
-        }
-
-        @Override
-        public void write(byte[] b) throws IOException {
-            errorStream.write(b);
-            super.write(b);
-        }
-
-        @Override
-        public void write(byte[] b, int off, int len) throws IOException {
-            errorStream.write(b, off, len);
-            super.write(b, off, len);
-        }
     }
 
 }
