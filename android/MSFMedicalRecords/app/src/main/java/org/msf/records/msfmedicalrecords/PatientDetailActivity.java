@@ -3,6 +3,8 @@ package org.msf.records.msfmedicalrecords;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +20,7 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link PatientDetailFragment}.
  */
-public class PatientDetailActivity extends Activity {
+public class PatientDetailActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class PatientDetailActivity extends Activity {
                     getIntent().getStringExtra(PatientDetailFragment.ARG_ITEM_ID));
             PatientDetailFragment fragment = new PatientDetailFragment();
             fragment.setArguments(arguments);
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.patient_detail_container, fragment)
                     .commit();
         }

@@ -1,16 +1,18 @@
 package org.msf.records.msfmedicalrecords;
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-
-import org.msf.records.msfmedicalrecords.dummy.DummyContent;
+import com.viewpagerindicator.TabPageIndicator;
 
 /**
  * A fragment representing a single Patient detail screen.
@@ -19,50 +21,84 @@ import org.msf.records.msfmedicalrecords.dummy.DummyContent;
  * on handsets.
  */
 public class PatientDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    private DummyContent.DummyItem mItem;
+    public static final String ARG_ITEM_ID = "ARG_ITEM_ID";
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public PatientDetailFragment() {
+    private static final int COUNT = 4;
+    private static final int OVERVIEW = 0, BLOOD = 1, NOTES = 2, LOGS = 3;
+
+    ViewPager mPager;
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_patient_detail, container, false);
+
+        FragmentPagerAdapter adapter = new PatientDetailsAdapter(getChildFragmentManager());
+
+        mPager = (ViewPager) view.findViewById(R.id.pager);
+        mPager.setAdapter(adapter);
+
+        TabPageIndicator indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
+        indicator.setViewPager(mPager);
+        return view;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-        }
-        setHasOptionsMenu(true);
-
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_patient_detail, container, false);
-
-
-        return rootView;
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.patient_detail, menu);
+    }
+
+
+    class PatientDetailsAdapter extends FragmentPagerAdapter {
+        public PatientDetailsAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case OVERVIEW:
+                    return PatientDetailOverviewFragment.newInstance();
+                case BLOOD:
+                    return PatientDetailBloodFragment.newInstance();
+                case NOTES:
+                    return PatientDetailNotesFragment.newInstance();
+                case LOGS:
+                    return PatientDetailLogsFragment.newInstance();
+                default:
+                    return null;
+
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case OVERVIEW:
+                    return getString(R.string.detail_pager_overview);
+                case BLOOD:
+                    return getString(R.string.detail_pager_blood);
+                case NOTES:
+                    return getString(R.string.detail_pager_notes);
+                case LOGS:
+                    return getString(R.string.detail_pager_logs);
+                default:
+                    return null;
+
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return COUNT;
+        }
     }
 }

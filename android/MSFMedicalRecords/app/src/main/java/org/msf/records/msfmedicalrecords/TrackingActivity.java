@@ -2,8 +2,16 @@ package org.msf.records.msfmedicalrecords;
 
 import android.app.Activity;
 import com.estimote.sdk.Region;
+
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.NfcV;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,9 +25,15 @@ import java.util.List;
 /**
  * Created by Gil on 01/10/2014.
  */
-public class TrackingActivity extends Activity implements BeaconManager.RangingListener {
+public class TrackingActivity extends FragmentActivity implements BeaconManager.RangingListener {
 
     private static final String TAG = TrackingActivity.class.getSimpleName();
+
+    private NfcAdapter mNFCAdapter;
+    private IntentFilter intentFiltersArray[];
+    private PendingIntent intent;
+    private String techListsArray[][];
+
 
     private static final String ESTIMOTE_PROXIMITY_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
     private static final Region ALL_ESTIMOTE_BEACONS = new Region("regionId", ESTIMOTE_PROXIMITY_UUID, null, null);
@@ -30,6 +44,40 @@ public class TrackingActivity extends Activity implements BeaconManager.RangingL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         beaconManager.setRangingListener(this);
+
+        mNFCAdapter = NfcAdapter.getDefaultAdapter(this);
+        intent = PendingIntent.getActivity(this, 0, new Intent(this,
+                TrackingActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+
+        IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+
+        try {
+            ndef.addDataType("*/*");
+        } catch (IntentFilter.MalformedMimeTypeException e) {
+            throw new RuntimeException("Unable to speciy */* Mime Type", e);
+        }
+        intentFiltersArray = new IntentFilter[] { ndef };
+
+        techListsArray = new String[][] { new String[] { NfcV.class.getName() } };
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+	    /*StringBuilder sb = new StringBuilder();
+	    for(int i = 0; i < tag.getId().length; i++){
+	    	sb.append(new Integer(tag.getId()[i]) + " ");
+	    }*/
+        Toast.makeText(this, "TagID: " +
+                org.msf.records.msfmedicalrecords.Utils.bytesToHex(tag.getId()), Toast.LENGTH_SHORT);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mNFCAdapter.enableForegroundDispatch(this, intent, intentFiltersArray, techListsArray);
     }
 
     @Override
@@ -41,6 +89,8 @@ public class TrackingActivity extends Activity implements BeaconManager.RangingL
         } catch (RemoteException e) {
             Log.e(TAG, "Cannot stop but it does not matter now", e);
         }
+        mNFCAdapter.disableForegroundDispatch(this);
+
 
     }
 

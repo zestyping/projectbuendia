@@ -2,6 +2,7 @@ package org.msf.records.msfmedicalrecords;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +24,7 @@ import android.view.MenuItem;
  * {@link PatientListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class PatientListActivity extends TrackingActivity
+public class PatientListActivity extends FragmentActivity
         implements PatientListFragment.Callbacks {
 
     /**
@@ -68,7 +69,7 @@ public class PatientListActivity extends TrackingActivity
             arguments.putString(PatientDetailFragment.ARG_ITEM_ID, id);
             PatientDetailFragment fragment = new PatientDetailFragment();
             fragment.setArguments(arguments);
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.patient_detail_container, fragment)
                     .commit();
 

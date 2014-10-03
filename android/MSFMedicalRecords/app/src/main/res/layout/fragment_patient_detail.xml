@@ -1,142 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/patient_detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:textIsSelectable="true"
-    tools:context="org.msf.records.msfmedicalrecords.PatientDetailFragment" >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <com.viewpagerindicator.TabPageIndicator
+        android:id="@+id/indicator"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingLeft="@dimen/horizontal_margin"
-        android:paddingRight="@dimen/horizontal_margin"
-        android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay"
-        android:fillViewport="false">
+        android:layout_width="fill_parent"
+        app:vpiTabPageIndicatorStyle="@style/CustomTabPageIndicator"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="36sp"
-                android:layout_marginTop="12dp"
-                android:textIsSelectable="true"
-                android:fontFamily="sans-serif-light"
-                android:text="Gil Julio" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#s4d25gdm75mm"
-                android:textColor="@android:color/darker_gray"
-                android:layout_marginBottom="12dp"/>
-
-            <TextView
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Basic Details" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:showDividers="middle"
-                android:divider="?android:dividerHorizontal"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp">
-                <LinearLayout
-                    style="@style/row">
-                    <LinearLayout
-                        style="@style/cell">
-                        <TextView
-                            style="@style/cell_heading"
-                            android:text="21"/>
-                        <TextView
-                            style="@style/cell_subheading"
-                            android:text="Years old (05-10-92)"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/cell">
-                        <TextView
-                            style="@style/cell_heading"
-                            android:text="AOB"/>
-                        <TextView
-                            style="@style/cell_subheading"
-                            android:text="Blood type"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout style="@style/row">
-                    <LinearLayout
-                        style="@style/cell">
-                        <TextView
-                            style="@style/cell_heading"
-                            android:text="M"/>
-                        <TextView
-                            style="@style/cell_subheading"
-                            android:text="Sex"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        style="@style/cell">
-                        <TextView
-                            style="@style/cell_heading"
-                            android:text="21"/>
-                        <TextView
-                            style="@style/cell_subheading"
-                            android:text="Estimated Days Infected"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Medical Records" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:showDividers="middle"
-                android:divider="?android:dividerHorizontal"
-                android:dividerPadding="32dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="22 September 2014"
-                        android:id="@+id/textView2" />
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10:05" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                        android:layout_below="@+id/textView2"
-                        android:textIsSelectable="true"
-                        android:layout_marginTop="12dp" />
-                </RelativeLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </ScrollView>
-</RelativeLayout>
+</LinearLayout>
