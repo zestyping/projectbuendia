@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_search"
         android:title="Search"
-        android:showAsAction="always|withText|collapseActionView"
+        android:showAsAction="always"
         android:icon="@null"
         android:queryHint="Patient id or name"
         android:actionViewClass="android.widget.SearchView" />

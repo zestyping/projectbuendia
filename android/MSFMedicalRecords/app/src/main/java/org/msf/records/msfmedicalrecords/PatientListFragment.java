@@ -1,16 +1,21 @@
 package org.msf.records.msfmedicalrecords;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import org.msf.records.msfmedicalrecords.dummy.DummyContent;
+import org.msf.records.msfmedicalrecords.model.Patient;
 
 /**
  * A list fragment representing a list of Patients. This fragment
@@ -39,6 +44,8 @@ public class PatientListFragment extends ListFragment {
      * The current activated item position. Only used on tablets.
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
+
+    private PatientAdapter mPatientAdapter;
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -73,12 +80,9 @@ public class PatientListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+        mPatientAdapter = new PatientAdapter(getActivity(), 0);
+        mPatientAdapter.addAll(Patient.GETDUMMYCONTENT());
+        setListAdapter(mPatientAdapter);
 
     }
 
@@ -151,5 +155,26 @@ public class PatientListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+
+    class PatientAdapter extends ArrayAdapter<Patient> {
+
+
+        public PatientAdapter(Context context, int resource) {
+            super(context, resource);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView == null)
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_cell_search_results, null);
+
+
+            Patient patient = getItem(position);
+            TextView name = (TextView) convertView.findViewById(R.id.listview_cell_search_results_name);
+            name.setText(patient.forename + " " + patient.surname);
+
+            return convertView;
+        }
     }
 }
