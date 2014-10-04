@@ -38,6 +38,7 @@ public final class ServerProperties {
 			Config.HTTP_PORT = Integer.parseInt(properties.getProperty("HTTP_PORT"));
 			Config.SQLITE_PATH = (properties.getProperty("SQLITE_PATH"));
 			Config.MONGODB_HOST = (properties.getProperty("MONGODB_HOST"));
+			Config.MONGODB_DB = (properties.getProperty("MONGODB_DB"));
 			Config.MAX_ERROR_FOLDER_SIZE_MB = Integer.parseInt(properties.getProperty("MAX_ERROR_FOLDER_SIZE_MB"));
             Config.ERROR_PATH = (properties.getProperty("ERROR_PATH"));
 		} else {

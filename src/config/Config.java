@@ -32,8 +32,9 @@ public final class Config {
 
     //hosts
 
-    public static String SQLITE_PATH = "localhost";
+    public static String SQLITE_PATH = "projectbuendia.db";
     public static String MONGODB_HOST = "localhost";
+    public static String MONGODB_DB = "projectbuendia";
 
     //security measures
     public static String ERROR_PATH = "/";

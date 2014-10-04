@@ -1,17 +1,20 @@
 package server;
 
+import com.mongodb.*;
 import config.Config;
 import config.ServerProperties;
-import io.FileChecks;
 import io.Logging;
+import mongodb.MongoConnectionProcessor;
+import mongodb.MongoQuery;
 import sqlite.ConnectionProcessor;
 import sqlite.SQLITEConnection;
 import sqlite.impl.OverrideQuery;
+import web.MinimalServer;
 
 import java.io.*;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -28,6 +31,7 @@ public final class Server {
     }
     private static Calendar calendar = new GregorianCalendar();
     private static ConnectionProcessor localDatabase;
+    private static MongoConnectionProcessor mongoDatabase;
 
     public static Calendar getCalendar() {
         return calendar;
@@ -55,8 +59,15 @@ public final class Server {
         Logging.log("RESTART","--------------------------------------------------------------------");
         Logging.log("INFO", "The server was restarted");
 
+
+        /*
+
+        START SQLITE
+
+         */
         localDatabase  = new ConnectionProcessor(new SQLITEConnection(Config.SQLITE_PATH));
         localDatabase.start();
+
         //Logging.writeSampleErrors(10);
         long start = System.currentTimeMillis();
         System.out.println("Putting thread to sleep until database is connected..");
@@ -68,6 +79,7 @@ public final class Server {
         long end = System.currentTimeMillis();
 
         Logging.log("INFO", Config.SQLITE_PATH + " (sqlite) took "+(end - start)+" ms to connect");
+
         localDatabase.executeQuery(new OverrideQuery("select 1 as `hah`") {
 
             @Override
@@ -78,8 +90,57 @@ public final class Server {
             }
         });
 
-        //System.out.println("Getting roots");
 
+
+
+        /*
+
+        START MONGODB
+
+         */
+
+        start = System.currentTimeMillis();
+        System.out.println("Putting thread to sleep until database is connected..");
+        try {
+            mongoDatabase  = new MongoConnectionProcessor(new MongoClient(Config.MONGODB_HOST),Config.MONGODB_DB);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        mongoDatabase.start();
+
+        while(!mongoDatabase.isConnected()) {
+            Thread.sleep(1);
+        }
+
+        end = System.currentTimeMillis();
+
+        Logging.log("INFO", Config.MONGODB_DB + "@"+Config.MONGODB_HOST+" (mongo) took "+(end - start)+" ms to connect");
+        BasicDBObject query = new BasicDBObject("i", 71);
+
+        mongoDatabase.executeQuery(new MongoQuery("patients", query) {
+            @Override
+            public void execute(DBCursor result) throws MongoException {
+                System.out.println("EXECUTIIIIN");
+                try {
+                    while(result.hasNext()) {
+                        System.out.println(result.next());
+                    }
+                } finally {
+                    result.close();
+                }
+            }
+        });
+
+
+
+        /*
+        finally, we start the rest server
+         */
+        try {
+            MinimalServer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -3,7 +3,7 @@ package sqlite;
 import java.sql.SQLException;
 
 /**
- * @author Omicron
+ * @author Pim de Witte
  */
 public interface Item {
 	boolean canExecute();
