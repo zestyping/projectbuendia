@@ -1,10 +1,8 @@
 package org.msf.records.msfmedicalrecords;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -32,12 +30,13 @@ public class PatientDetailOverviewFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_patient_detail_overview, container, false);
 
-
         return rootView;
     }
+
 }

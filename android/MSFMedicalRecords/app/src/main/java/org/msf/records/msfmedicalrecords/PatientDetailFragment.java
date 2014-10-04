@@ -44,6 +44,8 @@ public class PatientDetailFragment extends Fragment {
 
         TabPageIndicator indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
         indicator.setViewPager(mPager);
+
+
         return view;
     }
 

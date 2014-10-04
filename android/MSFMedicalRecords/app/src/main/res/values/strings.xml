@@ -20,4 +20,5 @@
     <string name="detail_pager_blood">Blood</string>
     <string name="detail_pager_notes">Notes</string>
     <string name="detail_pager_logs">Logs</string>
+
 </resources>

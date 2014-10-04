@@ -26,4 +26,6 @@ dependencies {
     compile files('libs/estimote-sdk-preview.jar')
     compile files('libs/estimote-sdk-preview-javadoc.jar')
     compile project(':ViewPagerIndicator')
+    compile 'com.mcxiaoke.volley:library:1.0.6'
+
 }

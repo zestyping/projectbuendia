@@ -17,8 +17,6 @@ import android.view.MenuItem;
  * more than a {@link PatientDetailFragment}.
  */
 
-//test
-
 public class PatientDetailActivity extends FragmentActivity {
 
     @Override
