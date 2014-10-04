@@ -2,12 +2,8 @@ package org.msf.records.msfmedicalrecords;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
@@ -20,6 +16,9 @@ import android.view.MenuItem;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link PatientDetailFragment}.
  */
+
+//test
+
 public class PatientDetailActivity extends FragmentActivity {
 
     @Override

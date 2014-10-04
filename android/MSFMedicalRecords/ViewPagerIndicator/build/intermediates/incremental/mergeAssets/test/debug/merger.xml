@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="debug" >
+        <source path="/Users/danieljulio/Documents/Projects/projectbuendia/android/MSFMedicalRecords/ViewPagerIndicator/build/intermediates/bundles/debug/assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/Users/danieljulio/Documents/Projects/projectbuendia/android/MSFMedicalRecords/ViewPagerIndicator/src/androidTest/assets" />
+    </dataSet>
+
+</merger>
