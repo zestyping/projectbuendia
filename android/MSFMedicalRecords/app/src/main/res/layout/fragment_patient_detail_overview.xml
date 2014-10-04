@@ -199,12 +199,15 @@
                 android:text="Blood Tests" />
 
             <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 style="@style/row">
                 <LinearLayout
                     style="@style/cell">
                     <TextView
                         style="@style/cell_heading"
-                        android:text="Positive"/>
+                        android:text="Positive"
+                        android:textColor="@color/red"/>
                     <TextView
                         style="@style/cell_subheading"
                         android:text="Fri 04 Oct at 14:30"/>
@@ -213,7 +216,8 @@
                     style="@style/cell">
                     <TextView
                         style="@style/cell_heading"
-                        android:text="Negative"/>
+                        android:text="Negative"
+                        android:textColor="@color/green"/>
                     <TextView
                         style="@style/cell_subheading"
                         android:text="Wed 01 Oct at 11:45"/>
