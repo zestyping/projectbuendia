@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
-import org.msf.records.msfmedicalrecords.dummy.DummyContent;
 import org.msf.records.msfmedicalrecords.model.LogItem;
 
 import java.util.Date;
@@ -68,16 +66,6 @@ public class PatientDetailLogsFragment extends ListFragment {
     }
 
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-        }
-    }
 
     /**
     * This interface must be implemented by activities that contain this

@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-import org.msf.records.msfmedicalrecords.dummy.DummyContent;
 import org.msf.records.msfmedicalrecords.model.Patient;
 
 /**
@@ -123,7 +122,7 @@ public class PatientListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(mPatientAdapter.getItem(position).id);
     }
 
     @Override
