@@ -5,6 +5,7 @@
         <item name="android:actionBarStyle" >@style/thick_ab_style</item>
         <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
         <item name="android:actionMenuTextAppearance">@style/MenuActionBar</item>
+        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     </style>
 
     <style name="thick_ab_style" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
@@ -12,6 +13,11 @@
     </style>
     <style name="MenuActionBar" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Menu">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ActionButtonStyle" parent="@android:style/Widget.Holo.Light.ActionButton">
+        <item name="android:paddingLeft">28dip</item>
+        <item name="android:paddingRight">28dip</item>
     </style>
 
     <style name="row">

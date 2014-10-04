@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +22,8 @@ import com.viewpagerindicator.TabPageIndicator;
  * on handsets.
  */
 public class PatientDetailFragment extends Fragment {
+
+    private static final String TAG = PatientDetailFragment.class.getSimpleName();
 
     public static final String ARG_ITEM_ID = "ARG_ITEM_ID";
 
@@ -47,6 +50,14 @@ public class PatientDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            Log.d(TAG, bundle.toString());
+        } else {
+            Log.d(TAG, "bundle is null");
+        }
+
     }
 
 
