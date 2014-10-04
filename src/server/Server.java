@@ -108,7 +108,7 @@ public final class Server {
         try {
             mongoDatabase  = new MongoConnectionProcessor(new MongoClient(Config.MONGODB_HOST),Config.MONGODB_DB);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            Logging.log("MongoServer problem", e);
         }
         mongoDatabase.start();
 
@@ -144,10 +144,11 @@ public final class Server {
         /*
         finally, we start the web server
          */
+
         try {
             JettyServer.start();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logging.log("Jetty problem", e);
         }
     }
 

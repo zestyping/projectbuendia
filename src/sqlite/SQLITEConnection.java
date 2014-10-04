@@ -1,5 +1,7 @@
 package sqlite;
 
+import io.Logging;
+
 import java.sql.*;
 
 /**
@@ -23,7 +25,7 @@ public final class SQLITEConnection {
         try {
             return connected = !connection.isClosed();
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logging.log("SQLite connection problem", e);
             return connected = false;
         }
     }
@@ -71,7 +73,7 @@ public final class SQLITEConnection {
             return connected = true;
         } catch (SQLException e) {
             //Server.getLogger().log(Level.SEVERE, e.getMessage());
-            e.printStackTrace();
+            Logging.log("SQLite problem", e);
             return false;
         }
     }

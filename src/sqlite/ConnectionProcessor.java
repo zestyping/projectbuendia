@@ -1,6 +1,8 @@
 package sqlite;
 
 
+import io.Logging;
+
 import java.sql.SQLException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -72,7 +74,7 @@ public final class ConnectionProcessor implements Runnable {
                         continue MainLoop;
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logging.log("Lost con", e);
                 }
                 items.remove();
                 //}

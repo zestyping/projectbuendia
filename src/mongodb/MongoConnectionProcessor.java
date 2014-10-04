@@ -1,6 +1,7 @@
 package mongodb;
 
 import com.mongodb.*;
+import io.Logging;
 import mongodb.MongoItem;
 import sqlite.Query;
 import sqlite.Update;
@@ -83,7 +84,7 @@ public final class MongoConnectionProcessor implements Runnable {
                         continue MainLoop;
                     }
                 } catch (MongoException e) {
-                    e.printStackTrace();
+                    Logging.log("Mongo problem", e);
                 }
                 items.remove();
                 //}

@@ -1,5 +1,7 @@
 package logic;
 
+import io.Logging;
+
 /**
  * Created by wwadewitte on 10/4/14.
  */
@@ -16,7 +18,7 @@ public class LogicThread extends Thread {
             try {
                 tick();
             } catch (Exception e) {
-                e.printStackTrace();
+                Logging.log("Logicthread problem", e);
             }
         } while (running);
     }
