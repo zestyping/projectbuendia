@@ -13,7 +13,7 @@ public class JettyServer {
     public static void start() throws Exception {
         Server server = new Server(8080);
         ServletHandler handler = new ServletHandler();
-        handler.addServletWithMapping(HelloServlet.class, "/test");
+        handler.addServletWithMapping(HelloServlet.class, "/patient/");
         server.setHandler(handler);
         server.start();
         server.join();
@@ -26,7 +26,26 @@ public class JettyServer {
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             response.setContentType("application/json");
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().println("<h1>Test</h1>");
+            response.getWriter().println("{" +
+                    "\"name\"" +    ":"     +   "\"Get\""  +
+                    "" +
+                    "" +
+                    "" +
+                    "}");
         }
+
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            response.setContentType("application/json");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().println("{" +
+                    "\"name\"" +    ":"     +   "\"Post\""  +
+                    "" +
+                    "" +
+                    "" +
+                    "}");
+        }
+
+
     }
 }

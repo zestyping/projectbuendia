@@ -4,6 +4,8 @@ import com.mongodb.*;
 import config.Config;
 import config.ServerProperties;
 import io.Logging;
+import logic.BackupThread;
+import logic.LogicThread;
 import mongodb.MongoConnectionProcessor;
 import mongodb.MongoQuery;
 import sqlite.ConnectionProcessor;
@@ -32,6 +34,8 @@ public final class Server {
     private static Calendar calendar = new GregorianCalendar();
     private static ConnectionProcessor localDatabase;
     private static MongoConnectionProcessor mongoDatabase;
+    private static final LogicThread logic = new LogicThread();
+    private static final BackupThread backups = new BackupThread();
 
     public static Calendar getCalendar() {
         return calendar;
@@ -130,10 +134,15 @@ public final class Server {
             }
         });
 
+        /*
+        We start the logic threadd
+         */
+        logic.start();
+        backups.start();
 
 
         /*
-        finally, we start the rest server
+        finally, we start the web server
          */
         try {
             JettyServer.start();

@@ -44,3 +44,73 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 12:23:54] --------------------------------------------------------------------
+[INFO (version 1) 12:23:54] The server was restarted
+[INFO (version 1) 12:23:54] msf.db (sqlite) took 628 ms to connect
+[INFO (version 1) 12:23:54] projectbuendia@localhost (mongo) took 421 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 12:24:46] --------------------------------------------------------------------
+[INFO (version 1) 12:24:46] The server was restarted
+[INFO (version 1) 12:24:46] msf.db (sqlite) took 629 ms to connect
+[INFO (version 1) 12:24:46] projectbuendia@localhost (mongo) took 147 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 12:26:55] --------------------------------------------------------------------
+[INFO (version 1) 12:26:55] The server was restarted
+[INFO (version 1) 12:26:55] msf.db (sqlite) took 623 ms to connect
+[INFO (version 1) 12:26:55] projectbuendia@localhost (mongo) took 443 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 12:28:13] --------------------------------------------------------------------
+[INFO (version 1) 12:28:13] The server was restarted
+[INFO (version 1) 12:28:13] msf.db (sqlite) took 612 ms to connect
+[INFO (version 1) 12:28:13] projectbuendia@localhost (mongo) took 148 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 12:44:37] --------------------------------------------------------------------
+[INFO (version 1) 12:44:37] The server was restarted
+[INFO (version 1) 12:44:37] msf.db (sqlite) took 625 ms to connect
+[INFO (version 1) 12:44:37] projectbuendia@localhost (mongo) took 426 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 13:13:43] --------------------------------------------------------------------
+[INFO (version 1) 13:13:43] The server was restarted
+[INFO (version 1) 13:13:43] msf.db (sqlite) took 643 ms to connect
+[INFO (version 1) 13:13:43] projectbuendia@localhost (mongo) took 466 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 13:15:07] --------------------------------------------------------------------
+[INFO (version 1) 13:15:07] The server was restarted
+[INFO (version 1) 13:15:07] msf.db (sqlite) took 623 ms to connect
+[INFO (version 1) 13:15:07] projectbuendia@localhost (mongo) took 146 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 13:16:05] --------------------------------------------------------------------
+[INFO (version 1) 13:16:05] The server was restarted
+[INFO (version 1) 13:16:05] msf.db (sqlite) took 635 ms to connect
+[INFO (version 1) 13:16:05] projectbuendia@localhost (mongo) took 424 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 13:38:36] --------------------------------------------------------------------
+[INFO (version 1) 13:38:36] The server was restarted
+[INFO (version 1) 13:38:36] msf.db (sqlite) took 646 ms to connect
+[INFO (version 1) 13:38:36] projectbuendia@localhost (mongo) took 494 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[RESTART (version 1) 13:41:56] --------------------------------------------------------------------
+[INFO (version 1) 13:41:56] The server was restarted
+[INFO (version 1) 13:41:56] msf.db (sqlite) took 637 ms to connect
+[INFO (version 1) 13:41:56] projectbuendia@localhost (mongo) took 428 ms to connect
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
